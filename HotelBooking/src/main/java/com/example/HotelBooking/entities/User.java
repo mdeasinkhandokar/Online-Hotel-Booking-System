@@ -2,6 +2,7 @@ package com.example.HotelBooking.entities;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,16 +23,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message ="Email is required")
+    @Column(unique = true)
     private String email;
 
-
+    @NotBlank(message = "Password is required")
     private String password;
     private String firstName;
     private String lastName;
 
-
+   @NotBlank(message = "Phone Number is required")
+   @Column(name="phone_number")
     private String phoneNumber;
 
+   @Enumerated(EnumType.STRING)
     private UserRole role;
 
     private Boolean isActive;
