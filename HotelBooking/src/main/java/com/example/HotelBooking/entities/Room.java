@@ -1,6 +1,7 @@
 package com.example.HotelBooking.entities;
 
 
+import com.example.HotelBooking.enums.RoomType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;

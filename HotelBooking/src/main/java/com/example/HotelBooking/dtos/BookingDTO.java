@@ -1,5 +1,7 @@
 package com.example.HotelBooking.dtos;
 
+import com.example.HotelBooking.enums.BookingStatus;
+import com.example.HotelBooking.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

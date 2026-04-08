@@ -1,6 +1,8 @@
 package com.example.HotelBooking.entities;
 
 
+import com.example.HotelBooking.enums.PaymentGateway;
+import com.example.HotelBooking.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
