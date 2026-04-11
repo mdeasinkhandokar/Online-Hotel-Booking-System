@@ -15,12 +15,14 @@ import com.example.HotelBooking.repositories.BookingRepository;
 import com.example.HotelBooking.repositories.RoomRepository;
 import com.example.HotelBooking.services.BookingService;
 import com.example.HotelBooking.services.NotificationService;
+import org.hibernate.annotations.NotFound;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.data.domain.Sort;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static java.lang.Character.getType;
@@ -142,11 +144,48 @@ public class BookingServiceImpl  implements BookingService {
 
     @Override
     public Response findBookingByReferenceNo(String reference) {
-        return null;
+       Booking booking = bookingRepository.findByBookingReference(bookingReference)
+               .orElseThrow(() -> new NotFoundException("Booking with reference No : " + bookingReference +"Not found"));
+
+        BookingDTO = modelMapper.map(booking, BookingDTO.class);
+        return Response.builder()
+                .status(200)
+                .message("success")
+                .booking(bookingDTO)
+                .build();
+
+
+
+
     }
 
     @Override
     public Response updateBooking(BookingDTO bookingDTO) {
-        return null;
+      if(bookingDTO.getId() == null)throw new NotFoundException("Booking id is required");
+
+
+      Booking existingBooking = bookingRepository.findById(bookingDTO.getId())
+              .orElseThrow(()-> new NotFoundException("Booking Not Found"));
+
+      if(bookingDTO. getBookingStatus() != null){
+          existingBooking.setBookingStatus(bookinDTO.getBookingStatus());
+
+      }
+      if(bookingDTO.getPaymentStatus() !=null){
+          existingBooking.setPaymentStatus(bookingDTO.getPaymentStatus());
+      }
+
+      bookingRepository.save(existingBooking);
+
+      return Response.builder()
+              .status(200)
+              .message("Booking Updated Successfully")
+              .build();
+    }
+
+    private BigDecimal calculateTotalPrice(Room room, BookingDTO bookingDTO){
+        BigDecimal pricePerNight = room.getPricePerNight();
+        long days = ChronoUnit.DAYS.between(bookingDTO.getCheckInDate(), bookingDTO.getCheckOutDate());
+        return pricePerNight.multiply(BigDecimal.valueOf(days));
     }
 }
