@@ -1,6 +1,8 @@
 package com.example.HotelBooking.entities;
 
 
+import com.example.HotelBooking.enums.BookingStatus;
+import com.example.HotelBooking.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,20 +25,19 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name="user_id")
+    @ManyToOne(cascade = CascadeType.REMOVE)  // meaning when a user is deleted all associated booking of the user will be deleted
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="room_id")
+    @JoinColumn(name = "room_id")
     private Room room;
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 
     private LocalDate checkInDate;
-    private LocalDate chectOutDate;
-
+    private LocalDate checkOutDate;
 
     private BigDecimal totalPrice;
     private String bookingReference;
@@ -44,8 +45,6 @@ public class Booking {
 
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
-
-
 
 
 }

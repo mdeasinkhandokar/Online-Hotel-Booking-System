@@ -1,5 +1,6 @@
 package com.example.HotelBooking.dtos;
 
+import com.example.HotelBooking.enums.PaymentGateway;
 import com.example.HotelBooking.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,7 +26,7 @@ public class PaymentDTO {
 
     private BigDecimal amount;
 
-    private PaymentGatway paymentGatway;
+    private PaymentGateway paymentGateway;
 
     private LocalDateTime paymentDate;
 

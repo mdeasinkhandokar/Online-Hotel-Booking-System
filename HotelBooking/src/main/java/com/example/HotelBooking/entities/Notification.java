@@ -1,6 +1,7 @@
 package com.example.HotelBooking.entities;
 
 
+import com.example.HotelBooking.enums.NotificationType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

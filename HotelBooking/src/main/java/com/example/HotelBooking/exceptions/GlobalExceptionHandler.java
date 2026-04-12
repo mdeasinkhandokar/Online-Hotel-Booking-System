@@ -53,12 +53,11 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(InvalidBookingStateAndDateException.class)
-    public ResponseEntity<Response> handleInvalidBookingStateAndDateException(InvalidBookingStateAndDateException ex){
-        Response response =Response.build()
+    public ResponseEntity<Response> handleInvalidBookingStateAndDateException(InvalidBookingStateAndDateException ex) {
+        Response response = Response.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
                 .message(ex.getMessage())
                 .build();
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
-
 }

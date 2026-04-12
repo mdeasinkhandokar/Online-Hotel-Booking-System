@@ -1,5 +1,6 @@
 package com.example.HotelBooking.dtos;
 
+import com.example.HotelBooking.enums.UserRole;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
